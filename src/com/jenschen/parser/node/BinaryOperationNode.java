@@ -1,6 +1,9 @@
 package com.jenschen.parser.node;
 
 import com.jenschen.token.Token;
+import com.jenschen.parser.node.operation.BinaryOperationFactory;
+
+import java.util.function.BinaryOperator;
 
 /**
  * @Author: JensChen
@@ -22,8 +25,12 @@ public class BinaryOperationNode implements ASTNode, Operation {
     }
 
     @Override
-    public void operation() {
-
+    public Token operation() {
+        Token left = leftNode.operation();
+        Token right = rightNode.operation();
+        BinaryOperator op = BinaryOperationFactory.getOperation(left.getType(), token.getType());
+        Token t = (Token) op.apply(left, right);
+        return t;
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         ConsoleReader reader = new ConsoleReader();
         try{
-//            while(true){
+            while(true){
                 System.out.println("input: ");
                 String context = reader.getText();
 //                System.out.println(context);
@@ -25,11 +25,14 @@ public class Main {
                 TokenIterator iterator = new TokenIterator(tokens);
                 Parser parser = new ExpressionParser();
                 ASTNode node = parser.parse(iterator);
-                System.out.println(node.toString());
-//            }
+//                System.out.println(node.toString());
+                Token answer = node.operation();
+                System.out.println("result " + answer.getValue());
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 
 }

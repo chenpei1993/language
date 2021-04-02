@@ -1,5 +1,7 @@
 package com.jenschen.parser.node;
 
+import com.jenschen.token.Token;
+
 /**
  * @Author: JensChen
  * @Description:
@@ -7,5 +9,5 @@ package com.jenschen.parser.node;
  */
 public interface Operation {
 
-    void operation();
+    Token operation();
 }

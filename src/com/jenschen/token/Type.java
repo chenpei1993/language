@@ -16,6 +16,8 @@ public enum Type {
     MINUS("-"),
     MUL("*"),
     DIV("/"),
+    MODE("%"),
+    POW("^"),
     LPAREN("("),
     RPAREN(")");
 

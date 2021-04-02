@@ -5,6 +5,6 @@ package com.jenschen.parser.node;
  * @Description:
  * @Date: Created in 08:07 2021/4/2
  */
-public interface ASTNode {
+public interface ASTNode extends Operation {
 
 }

@@ -73,8 +73,8 @@ public class Lexer {
     private Token getDigits() throws LexerException {
         StringBuilder sb = new StringBuilder();
         int dotCount = 0;
-        while(curToken != null && (Type.DIGITS.is(curToken) || ".".equals(curToken))){
-            if(".".equals(curToken)){
+        while(curToken != null && (Type.DIGITS.is(curToken) || curToken.equals('.'))){
+            if(curToken.equals('.')){
                 sb.append(".");
                 dotCount += 1;
             }else{

@@ -1,6 +1,10 @@
 package com.jenschen.parser.node;
 
 import com.jenschen.token.Token;
+import com.jenschen.token.Type;
+import com.jenschen.parser.node.operation.UnaryOperationFactory;
+
+import java.util.function.Function;
 
 /**
  * @Author: JensChen
@@ -15,6 +19,13 @@ public class UnaryOperationNode implements ASTNode{
     public UnaryOperationNode(ASTNode value, Token token){
         this.value = value;
         this.token = token;
+    }
+
+    @Override
+    public Token operation() {
+        Token v = value.operation();
+        Function f = UnaryOperationFactory.getOperation(Type.FLOAT, token.getType());
+        return (Token) f.apply(v);
     }
 
     @Override

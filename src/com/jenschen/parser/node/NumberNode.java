@@ -7,7 +7,7 @@ import com.jenschen.token.Token;
  * @Description:
  * @Date: Created in 09:27 2021/4/2
  */
-public class NumberNode<T> extends BasicNode{
+public class NumberNode implements ASTNode {
 
     private Token token;
 
@@ -15,10 +15,19 @@ public class NumberNode<T> extends BasicNode{
         this.token = token;
     }
 
+    public Token getToken(){
+        return this.token;
+    }
+
     @Override
     public String toString() {
         return "NumberNode{" +
                 "token=" + token +
                 '}';
+    }
+
+    @Override
+    public Token operation() {
+        return new Token(this.token.getType(), this.token.getValue());
     }
 }
