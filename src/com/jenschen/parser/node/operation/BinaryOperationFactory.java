@@ -48,6 +48,18 @@ public class BinaryOperationFactory {
                 double n2 = ((Number) d2.getValue()).doubleValue();
                 return new Token(Type.FLOAT, n1 / n2);
             };
+        }else if(Type.MODE.equals(operation)){
+            return (Token d1, Token d2) -> {
+                double n1 = ((Number) d1.getValue()).doubleValue();
+                double n2 = ((Number) d2.getValue()).doubleValue();
+                return new Token(Type.FLOAT, n1 % n2);
+            };
+        }else if(Type.POW.equals(operation)){
+            return (Token d1, Token d2) -> {
+                double n1 = ((Number) d1.getValue()).doubleValue();
+                double n2 = ((Number) d2.getValue()).doubleValue();
+                return new Token(Type.FLOAT, Math.pow(n1, n2));
+            };
         }
         return null;
     }
@@ -76,6 +88,18 @@ public class BinaryOperationFactory {
                 int n1 = ((Number) d1.getValue()).intValue();
                 int n2 = ((Number) d2.getValue()).intValue();
                 return new Token(Type.INT, n1 / n2);
+            };
+        }else if(Type.MODE.equals(operation)){
+            return (Token d1, Token d2) -> {
+                double n1 = ((Number) d1.getValue()).intValue();
+                double n2 = ((Number) d2.getValue()).intValue();
+                return new Token(Type.INT, n1 % n2);
+            };
+        }else if(Type.POW.equals(operation)){
+            return (Token d1, Token d2) -> {
+                double n1 = ((Number) d1.getValue()).intValue();
+                double n2 = ((Number) d2.getValue()).intValue();
+                return new Token(Type.FLOAT, Math.pow(n1, n2));
             };
         }
         return null;
