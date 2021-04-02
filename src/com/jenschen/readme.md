@@ -13,7 +13,7 @@ expr -> (plus | minus) term
 
 term -> number 
 
-term -> (mul | div) number 
+term -> (mul | div | mode | pow) number 
 
 number -> (plus | minus) number
 

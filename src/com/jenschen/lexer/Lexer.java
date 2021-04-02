@@ -44,6 +44,12 @@ public class Lexer {
                 next();
             }else if(Type.TAB.is(curToken)){
                 next();
+            }else if(Type.POW.is(curToken)){
+                tokens.add(new Token(Type.POW));
+                next();
+            }else if(Type.MODE.is(curToken)){
+                tokens.add(new Token(Type.MODE));
+                next();
             }else if(Type.PLUS.is(curToken)){
                 tokens.add(new Token(Type.PLUS));
                 next();

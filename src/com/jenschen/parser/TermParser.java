@@ -24,6 +24,8 @@ public class TermParser implements Parser{
     static{
         canParserType.add(Type.MUL);
         canParserType.add(Type.DIV);
+        canParserType.add(Type.POW);
+        canParserType.add(Type.MODE);
     }
 
     @Override
