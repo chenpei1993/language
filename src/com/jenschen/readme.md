@@ -9,13 +9,11 @@
 ```****
 expr -> term 
 
-expr -> identifier
-
 expr -> (plus | minus) term
 
 expr -> (let | const) identifier = expr
 
-term -> number
+term -> number | identifier
 
 term -> (mul | div | mode | pow) (number | identifier)
 

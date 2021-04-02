@@ -22,8 +22,14 @@ public enum Type {
     MODE("%"),
     POW("^"),
     EQ("="),
+    LOGIC_EQ("=="),
+    LOGIC_GT(">"),
+    LOGIC_LT("<"),
+    LOGIC_GE(">="),
+    LOGIC_LE("<="),
     LPAREN("("),
     RPAREN(")");
+
 
     private String symbol;
 

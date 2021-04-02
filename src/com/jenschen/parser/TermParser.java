@@ -3,6 +3,7 @@ package com.jenschen.parser;
 import com.jenschen.exception.ParserException;
 import com.jenschen.parser.node.ASTNode;
 import com.jenschen.parser.node.BinaryOperationNode;
+import com.jenschen.parser.node.VariableAccessNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
@@ -30,11 +31,20 @@ public class TermParser implements Parser{
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
-        ASTNode left = numberParser.parse(iterator);
-
+        ASTNode left;
+        if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
+            left = new VariableAccessNode(iterator.next());
+        }else{
+            left = numberParser.parse(iterator);
+        }
         while(canParserType.contains(iterator.getNext().getType())){
             Token token = iterator.next();
-            ASTNode right = numberParser.parse(iterator);
+            ASTNode right;
+            if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
+                right = new VariableAccessNode(iterator.next());
+            }else{
+                right = numberParser.parse(iterator);
+            }
             left = new BinaryOperationNode(left, right, token);
         }
         return left;

@@ -50,20 +50,13 @@ public class ExpressionParser implements Parser {
 
 
         ASTNode left;
-        if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
-            left = new VariableAccessNode(iterator.next());
-        }else{
-            left = termParser.parse(iterator);
-        }
+
+        left = termParser.parse(iterator);
+
 
         while(canParserType.contains(iterator.getNext().getType())){
             Token token = iterator.next();
-            ASTNode right;
-            if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
-                right = new VariableAccessNode(iterator.next());
-            }else{
-                right = termParser.parse(iterator);
-            }
+            ASTNode right = termParser.parse(iterator);
             left = new BinaryOperationNode(left, right, token);
         }
 
