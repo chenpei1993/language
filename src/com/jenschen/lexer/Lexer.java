@@ -84,9 +84,9 @@ public class Lexer {
         }
 
         if(dotCount == 0){
-            return new Token(Type.INT, sb.toString());
+            return new Token(Type.INT, Integer.valueOf(sb.toString()));
         }else if(dotCount == 1){
-            return new Token(Type.FLOAT, sb.toString());
+            return new Token(Type.FLOAT, Double.valueOf(sb.toString()));
         }else{
             throw new LexerException("illegal character");
         }
