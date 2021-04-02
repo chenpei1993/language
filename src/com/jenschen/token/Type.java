@@ -6,6 +6,7 @@ package com.jenschen.token;
  * @Date: Created in 05:11 2021/4/2
  */
 public enum Type {
+    NULL,
     INT,
     FLOAT,
     DIGITS("0123456789"),

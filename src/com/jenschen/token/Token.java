@@ -5,7 +5,7 @@ package com.jenschen.token;
  * @Description:
  * @Date: Created in 05:06 2021/4/2
  */
-public class Token<T> {
+public class Token<T>{
 
     private Type type;
 
@@ -19,6 +19,14 @@ public class Token<T> {
     public Token(Type type, T value){
         this.type = type;
         this.value = value;
+    }
+
+    public Type getType(){
+        return type;
+    }
+
+    public T getValue(){
+        return value;
     }
 
     @Override
