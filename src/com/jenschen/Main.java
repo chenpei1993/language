@@ -21,11 +21,11 @@ public class Main {
 //                System.out.println(context);
                 Lexer lexer = new Lexer(context);
                 List<Token> tokens = lexer.lexerText();
-//                System.out.println(tokens);
+                System.out.println(tokens);
                 TokenIterator iterator = new TokenIterator(tokens);
                 Parser parser = new ExpressionParser();
                 ASTNode node = parser.parse(iterator);
-//                System.out.println(node.toString());
+                System.out.println(node.toString());
                 Token answer = node.operation();
                 System.out.println("result " + answer.getValue());
             }

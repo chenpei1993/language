@@ -9,7 +9,10 @@ public enum Type {
     NULL,
     INT,
     FLOAT,
-    DIGITS("0123456789"),
+    IDENTIFIER,
+    VARIABLE,
+    KEYWORD_LET("let"),
+    KEYWORD_CONST("const"),
     SPACE(" "),
     TAB("\t"),
     PLUS("+"),
@@ -18,6 +21,7 @@ public enum Type {
     DIV("/"),
     MODE("%"),
     POW("^"),
+    EQ("="),
     LPAREN("("),
     RPAREN(")");
 
@@ -37,5 +41,13 @@ public enum Type {
         }
 
         return this.symbol.indexOf(character) < 0 ? false : true;
+    }
+
+    public boolean is(String s){
+        if(this.symbol == null){
+            return false;
+        }
+
+        return this.symbol.equals(s);
     }
 }

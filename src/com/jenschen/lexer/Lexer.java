@@ -3,6 +3,7 @@ package com.jenschen.lexer;
 import com.jenschen.exception.LexerException;
 import com.jenschen.token.Token;
 import com.jenschen.token.Type;
+import com.jenschen.util.LexerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +39,14 @@ public class Lexer {
     public List<Token> lexerText() throws LexerException {
         List<Token> tokens = new ArrayList<>();
         while(curToken != null){
-            if(Type.DIGITS.is(curToken)){
+            if(LexerUtil.isNumber(curToken)){
                 tokens.add(getDigits());
             }else if(Type.SPACE.is(curToken)){
                 next();
             }else if(Type.TAB.is(curToken)){
                 next();
+            }else if(LexerUtil.isLetter(curToken)){
+                tokens.add(getIdentifier());
             }else if(Type.POW.is(curToken)){
                 tokens.add(new Token(Type.POW));
                 next();
@@ -62,6 +65,9 @@ public class Lexer {
             }else if(Type.DIV.is(curToken)){
                 tokens.add(new Token(Type.DIV));
                 next();
+            }else if(Type.EQ.is(curToken)){
+                tokens.add(new Token(Type.EQ));
+                next();
             }else if(Type.LPAREN.is(curToken)){
                 tokens.add(new Token(Type.LPAREN));
                 next();
@@ -76,10 +82,24 @@ public class Lexer {
         return tokens;
     }
 
+    private Token getIdentifier(){
+        StringBuilder sb = new StringBuilder();
+        while(curToken != null && (LexerUtil.isValidCharacter(curToken))){
+            sb.append(curToken);
+            next();
+        }
+        String word = sb.toString();
+        if(LexerUtil.isKeyword(word)){
+            return new Token(Type.VARIABLE, word);
+        }else{
+            return new Token(Type.IDENTIFIER, word);
+        }
+    }
+
     private Token getDigits() throws LexerException {
         StringBuilder sb = new StringBuilder();
         int dotCount = 0;
-        while(curToken != null && (Type.DIGITS.is(curToken) || curToken.equals('.'))){
+        while(curToken != null && LexerUtil.isDouble(curToken)){
             if(curToken.equals('.')){
                 sb.append(".");
                 dotCount += 1;

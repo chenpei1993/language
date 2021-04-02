@@ -22,7 +22,7 @@ public class NumberParser implements Parser{
 
     private static UnaryOperationParser unaryOperationParser = new UnaryOperationParser();
 
-    private static ExpressionParser programParser = new ExpressionParser();
+    private static ExpressionParser expressionParser = new ExpressionParser();
 
 
     static{
@@ -46,7 +46,7 @@ public class NumberParser implements Parser{
 
         if(Type.LPAREN.equals(iterator.getNext().getType())){
             iterator.next();
-            ASTNode node = programParser.parse(iterator);
+            ASTNode node = expressionParser.parse(iterator);
             if(Type.RPAREN.equals(iterator.getNext().getType())){
                 iterator.next();
             }

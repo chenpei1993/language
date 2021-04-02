@@ -6,14 +6,18 @@
 
 ## 文法
 
-```
+```****
 expr -> term 
+
+expr -> identifier
 
 expr -> (plus | minus) term
 
-term -> number 
+expr -> (let | const) identifier = expr
 
-term -> (mul | div | mode | pow) number 
+term -> number
+
+term -> (mul | div | mode | pow) (number | identifier)
 
 number -> (plus | minus) number
 
@@ -21,11 +25,11 @@ number -> (expr)
 
 number -> int | float
 
+identifier -> string
+
 ```
 
 ## 设计模式
 
 - 迭代器模式
 - 组合模式
-- 访问者模式
-
