@@ -13,6 +13,7 @@ public class ConsoleReader implements Reader{
 
     @Override
     public String getText() throws IOException {
+        System.out.println("input: ");
         BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
         String str = scanner.readLine();
         return str;

@@ -24,6 +24,7 @@ public enum Type {
     KEYWORD_FALSE("false"),
     SPACE(" "),
     TAB("\t"),
+    ENTER("\n"),
     PLUS("+"),
     MINUS("-"),
     MUL("*"),

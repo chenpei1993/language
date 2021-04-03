@@ -45,6 +45,8 @@ public class Lexer {
                 next();
             }else if(Type.TAB.is(curToken)){
                 next();
+            }else if(Type.ENTER.is(curToken)){
+                next();
             }else if(LexerUtil.isLetter(curToken)){
                 tokens.add(getIdentifier());
             }else if(Type.POW.is(curToken)){

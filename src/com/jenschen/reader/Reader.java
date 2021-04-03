@@ -1,5 +1,7 @@
 package com.jenschen.reader;
 
+import com.jenschen.exception.IllegalFileException;
+
 import java.io.IOException;
 
 /**
@@ -9,5 +11,5 @@ import java.io.IOException;
  */
 public interface Reader {
 
-    String getText() throws IOException;
+    String getText() throws IOException, IllegalFileException;
 }
