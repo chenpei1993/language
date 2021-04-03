@@ -20,6 +20,8 @@ public enum Type {
     KEYWORD_IF("if"),
     KEYWORD_THEN("then"),
     KEYWORD_ELSE("else"),
+    KEYWORD_TRUE("true"),
+    KEYWORD_FALSE("false"),
     SPACE(" "),
     TAB("\t"),
     PLUS("+"),

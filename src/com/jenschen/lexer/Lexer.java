@@ -100,7 +100,7 @@ public class Lexer {
             return new Token(Type.LOGIC_GE);
         }else if(Type.LOGIC_GT.is(symbol)){
             return new Token(Type.LOGIC_GT);
-        }else if(Type.LOGIC_EQ.is(curToken)){
+        }else if(Type.LOGIC_EQ.is(symbol)){
             return new Token(Type.LOGIC_EQ);
         }else{
             throw new LexerException("illegal logic symbol");

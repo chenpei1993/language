@@ -34,6 +34,8 @@ public class LexerUtil {
         KEYWORD.add(Type.KEYWORD_IF);
         KEYWORD.add(Type.KEYWORD_THEN);
         KEYWORD.add(Type.KEYWORD_ELSE);
+        KEYWORD.add(Type.KEYWORD_TRUE);
+        KEYWORD.add(Type.KEYWORD_FALSE);
     }
 
     public static boolean isLogicSymbol(Character c){

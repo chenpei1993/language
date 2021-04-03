@@ -15,6 +15,7 @@ expr -> if compareExpr then expr else expr
 
 compareExpr -> arithmeticExpr | arithmeticExpr compareSymbol arithmeticExpr
 compareExpr -> (compareExpr)
+compareExpr -> true | false
 
 
 arithmeticExpr -> term 
