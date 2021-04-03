@@ -4,6 +4,7 @@ import com.jenschen.token.Token;
 import com.jenschen.token.Type;
 
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 /**
  * @Author: JensChen
@@ -12,7 +13,7 @@ import java.util.function.BinaryOperator;
  */
 public class BooleanOperationUtil {
 
-    public static BinaryOperator<Token> getBooleanOperation(Type operation){
+    public static BinaryOperator<Token> getBiBooleanOperation(Type operation){
         if(Type.KEYWORD_AND.equals(operation)){
             return (Token d1, Token d2) -> {
                 boolean n1 = (boolean) d1.getValue();
@@ -24,6 +25,16 @@ public class BooleanOperationUtil {
                 boolean n1 = (boolean) d1.getValue();
                 boolean n2 = transferToBoolean(d2);
                 return new Token(Type.BOOLEAN, n1 || n2);
+            };
+        }
+        return null;
+    }
+
+    public static Function<Token, Token> getBooleanOperation(Type operation){
+        if(Type.KEYWORD_NOT.equals(operation)){
+            return (Token d1) -> {
+                boolean v =  transferToBoolean(d1);
+                return new Token(Type.BOOLEAN, !v);
             };
         }
         return null;

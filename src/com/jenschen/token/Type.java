@@ -31,8 +31,6 @@ public enum Type {
     LOGIC_LT("<"),
     LOGIC_GE(">="),
     LOGIC_LE("<="),
-    LOGIC_AND("&&"),
-    LOGIC_OR("||"),
     LOGIC_NOT("!"),
     LPAREN("("),
     RPAREN(")");

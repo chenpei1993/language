@@ -20,11 +20,11 @@ public class BinaryOperationFactory {
     //todo need a better design
     public static BinaryOperator<Token> getOperation(Type type, Type operation){
         if(Type.FLOAT.equals(type)){
-            return FloatOperationUtil.getFloatOperation(operation);
+            return FloatOperationUtil.getBiFloatOperation(operation);
         }else if(Type.INT.equals(type)){
-            return IntOperationUtil.getIntOperation(operation);
+            return IntOperationUtil.getBiIntOperation(operation);
         }else if(Type.BOOLEAN.equals(type)){
-            return BooleanOperationUtil.getBooleanOperation(operation);
+            return BooleanOperationUtil.getBiBooleanOperation(operation);
         }
         return null;
     }

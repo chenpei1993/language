@@ -3,6 +3,7 @@ package com.jenschen.parser;
 import com.jenschen.exception.ParserException;
 import com.jenschen.parser.node.ASTNode;
 import com.jenschen.parser.node.BinaryOperationNode;
+import com.jenschen.parser.node.UnaryOperationNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
@@ -30,6 +31,12 @@ public class CompareExpressionParser implements Parser {
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
+
+        if(Type.KEYWORD_NOT.equals(iterator.getNext().getType())){
+            Token token = iterator.next();
+            ASTNode value = this.parse(iterator);
+            return new UnaryOperationNode(value, token);
+        }
 
         if(Type.LPAREN.equals(iterator.getNext().getType())){
             iterator.next();

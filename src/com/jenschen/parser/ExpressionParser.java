@@ -25,8 +25,6 @@ public class ExpressionParser implements Parser {
 
     private static List<Type> canParserType = new ArrayList<>();
     static {
-        canParserType.add(Type.LOGIC_AND);
-        canParserType.add(Type.LOGIC_OR);
         canParserType.add(Type.KEYWORD_AND);
         canParserType.add(Type.KEYWORD_OR);
     }
