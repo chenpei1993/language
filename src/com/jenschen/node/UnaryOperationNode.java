@@ -1,9 +1,8 @@
-package com.jenschen.parser.node;
+package com.jenschen.node;
 
 import com.jenschen.exception.OperationException;
-import com.jenschen.exception.ParserException;
 import com.jenschen.token.Token;
-import com.jenschen.parser.node.operation.UnaryOperationFactory;
+import com.jenschen.node.operation.UnaryOperationFactory;
 
 import java.util.function.Function;
 

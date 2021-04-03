@@ -1,8 +1,8 @@
-package com.jenschen.parser.node;
+package com.jenschen.node;
 
 import com.jenschen.exception.NoElseException;
 import com.jenschen.exception.OperationException;
-import com.jenschen.token.NullToken;
+import com.jenschen.token.EmptyToken;
 import com.jenschen.token.Token;
 
 /**
@@ -43,6 +43,6 @@ public class IfOperationNode implements ASTNode, Operation {
                 return elseNode.operation();
             }
         }
-        return new NullToken();
+        return new EmptyToken();
     }
 }

@@ -5,13 +5,13 @@ package com.jenschen.token;
  * @Description:
  * @Date: Created in 17:01 2021/4/3
  */
-public final class NullToken extends Token{
+public final class EmptyToken extends Token{
 
     private final static Type type = Type.NULL;
 
     private final static String value = "";
 
-    public NullToken() {
+    public EmptyToken() {
         super(type, value);
     }
 }

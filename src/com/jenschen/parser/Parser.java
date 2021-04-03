@@ -1,11 +1,8 @@
 package com.jenschen.parser;
 
 import com.jenschen.exception.ParserException;
-import com.jenschen.parser.node.ASTNode;
-import com.jenschen.token.Token;
+import com.jenschen.node.ASTNode;
 import com.jenschen.token.TokenIterator;
-
-import java.util.List;
 
 /**
  * @Author: JensChen

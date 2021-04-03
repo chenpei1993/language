@@ -2,8 +2,8 @@ package com.jenschen.parser;
 
 import com.jenschen.exception.IllegalExpressionException;
 import com.jenschen.exception.ParserException;
-import com.jenschen.parser.node.ASTNode;
-import com.jenschen.parser.node.IfOperationNode;
+import com.jenschen.node.ASTNode;
+import com.jenschen.node.IfOperationNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;

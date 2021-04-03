@@ -12,6 +12,7 @@ expr -> variableSymbol identifier = compareExpr
 expr -> compareExpr logicSymbol compareExpr
 expr -> notLogicSymbol compareExpr
 expr -> if compareExpr then expr else expr
+expr -> while compareExpr then expr end
 
 compareExpr -> arithmeticExpr | arithmeticExpr compareSymbol arithmeticExpr
 compareExpr -> (compareExpr)

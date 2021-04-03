@@ -1,4 +1,4 @@
-package com.jenschen.parser.node.operation;
+package com.jenschen.node.operation;
 
 import com.jenschen.token.Token;
 import com.jenschen.token.Type;

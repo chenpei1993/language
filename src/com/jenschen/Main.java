@@ -3,7 +3,7 @@ package com.jenschen;
 import com.jenschen.lexer.Lexer;
 import com.jenschen.parser.ExpressionParser;
 import com.jenschen.parser.Parser;
-import com.jenschen.parser.node.ASTNode;
+import com.jenschen.node.ASTNode;
 import com.jenschen.reader.ConsoleReader;
 import com.jenschen.reader.FilePathReader;
 import com.jenschen.reader.Reader;
@@ -15,8 +15,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-//        Reader reader = new ConsoleReader();
-        Reader reader = new FilePathReader();
+        Reader reader = new ConsoleReader();
+//        Reader reader = new FilePathReader();
         try{
             while(true){
                 String context = reader.getText();

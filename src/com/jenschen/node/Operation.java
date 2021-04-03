@@ -1,6 +1,5 @@
-package com.jenschen.parser.node;
+package com.jenschen.node;
 
-import com.jenschen.exception.NoElseException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.Token;
 

@@ -1,4 +1,4 @@
-package com.jenschen.parser.node;
+package com.jenschen.node;
 
 import com.jenschen.exception.OperationException;
 import com.jenschen.parser.VariableTable;

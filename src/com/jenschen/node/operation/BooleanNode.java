@@ -1,8 +1,8 @@
-package com.jenschen.parser.node.operation;
+package com.jenschen.node.operation;
 
 import com.jenschen.exception.OperationException;
-import com.jenschen.parser.node.ASTNode;
-import com.jenschen.parser.node.Operation;
+import com.jenschen.node.ASTNode;
+import com.jenschen.node.Operation;
 import com.jenschen.token.Token;
 import com.jenschen.token.Type;
 

@@ -1,8 +1,8 @@
-package com.jenschen.parser.node;
+package com.jenschen.node;
 
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.Token;
-import com.jenschen.parser.node.operation.BinaryOperationFactory;
+import com.jenschen.node.operation.BinaryOperationFactory;
 
 import java.util.function.BinaryOperator;
 
