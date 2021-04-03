@@ -1,15 +1,11 @@
 package com.jenschen.parser;
 
-import com.jenschen.exception.IllegalExpressionException;
 import com.jenschen.exception.ParserException;
 import com.jenschen.parser.node.ASTNode;
 import com.jenschen.parser.node.BinaryOperationNode;
-import com.jenschen.parser.node.VariableAccessNode;
-import com.jenschen.parser.node.VariableAssignNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
-import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.List;

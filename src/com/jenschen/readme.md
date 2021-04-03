@@ -11,9 +11,11 @@
 expr -> variableSymbol identifier = compareExpr
 expr -> compareExpr logicSymbol compareExpr
 expr -> notLogicSymbol compareExpr
+expr -> if compareExpr then expr else expr
 
 compareExpr -> arithmeticExpr | arithmeticExpr compareSymbol arithmeticExpr
 compareExpr -> (compareExpr)
+
 
 arithmeticExpr -> term 
 arithmeticExpr -> plusMinus term
@@ -72,11 +74,11 @@ print(a)
 ```
 let a = 1
 let b
-if(a >= 1){
+if a >= 1 then
     b = 1
-}else{
+else
     b = 2
-}
+    
 print(b)
 ```
 

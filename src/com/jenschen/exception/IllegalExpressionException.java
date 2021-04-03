@@ -6,8 +6,9 @@ package com.jenschen.exception;
  * @Date: Created in 15:10 2021/4/2
  */
 public class IllegalExpressionException extends ParserException{
-    public IllegalExpressionException(){
-        super("illegal expression ");
+    public IllegalExpressionException(String message){
+
+        super("illegal expression " + message);
     }
 
 }

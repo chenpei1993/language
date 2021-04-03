@@ -10,6 +10,7 @@ import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class ExpressionParser implements Parser {
 
     private static Parser compareExpressionParser = new CompareExpressionParser();
 
+    private static Parser ifExpressionParser = new IfExpressionParser();
+
     private static List<Type> canParserType = new ArrayList<>();
     static {
         canParserType.add(Type.KEYWORD_AND);
@@ -31,6 +34,11 @@ public class ExpressionParser implements Parser {
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
+
+        if(Type.KEYWORD_IF.equals(iterator.getNext().getType())){
+            ASTNode token = ifExpressionParser.parse(iterator);
+            return token;
+        }
 
         if(Type.KEYWORD_LET.equals(iterator.getNext().getType())){
             Token token = iterator.next();

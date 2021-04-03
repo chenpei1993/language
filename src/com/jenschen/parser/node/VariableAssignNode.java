@@ -1,5 +1,6 @@
 package com.jenschen.parser.node;
 
+import com.jenschen.exception.OperationException;
 import com.jenschen.parser.VariableTable;
 import com.jenschen.token.Token;
 
@@ -19,7 +20,7 @@ public class VariableAssignNode implements ASTNode{
     }
 
     @Override
-    public Token operation() {
+    public Token operation() throws OperationException {
         Token right = this.right.operation();
         String key = (String) variable.getValue();
         VariableTable.setGlobalVariableMap(key, right);

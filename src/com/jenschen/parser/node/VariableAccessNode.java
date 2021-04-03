@@ -1,5 +1,6 @@
 package com.jenschen.parser.node;
 
+import com.jenschen.exception.OperationException;
 import com.jenschen.parser.VariableTable;
 import com.jenschen.token.Token;
 
@@ -25,7 +26,7 @@ public class VariableAccessNode implements ASTNode {
     }
 
     @Override
-    public Token operation() {
+    public Token operation() throws OperationException {
         Token t = this.token;
         if(node == null){
             return VariableTable.getGlobalVariableMap((String) t.getValue());

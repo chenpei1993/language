@@ -22,13 +22,13 @@ public class LocalVariableParser implements Parser{
 
 
         if(!Type.IDENTIFIER.equals(iterator.getNext().getType())){
-            throw new IllegalExpressionException();
+            throw new IllegalExpressionException("Local Variable");
         }
 
         Token variableName = iterator.next();
 
         if(!Type.EQ.equals(iterator.getNext().getType())){
-            throw new IllegalExpressionException();
+            throw new IllegalExpressionException("Local Variable");
         }
         iterator.next();
 

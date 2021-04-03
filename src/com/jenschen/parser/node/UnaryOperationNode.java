@@ -1,7 +1,8 @@
 package com.jenschen.parser.node;
 
+import com.jenschen.exception.OperationException;
+import com.jenschen.exception.ParserException;
 import com.jenschen.token.Token;
-import com.jenschen.token.Type;
 import com.jenschen.parser.node.operation.UnaryOperationFactory;
 
 import java.util.function.Function;
@@ -22,7 +23,7 @@ public class UnaryOperationNode implements ASTNode{
     }
 
     @Override
-    public Token operation() {
+    public Token operation() throws OperationException {
         Token v = value.operation();
         Function f = UnaryOperationFactory.getOperation(v.getType(), token.getType());
         return (Token) f.apply(v);

@@ -1,5 +1,7 @@
 package com.jenschen.parser.node;
 
+import com.jenschen.exception.NoElseException;
+import com.jenschen.exception.OperationException;
 import com.jenschen.token.Token;
 
 /**
@@ -9,5 +11,5 @@ import com.jenschen.token.Token;
  */
 public interface Operation {
 
-    Token operation();
+    Token operation() throws OperationException;
 }
