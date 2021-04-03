@@ -24,7 +24,7 @@ public class UnaryOperationNode implements ASTNode{
     @Override
     public Token operation() {
         Token v = value.operation();
-        Function f = UnaryOperationFactory.getOperation(Type.FLOAT, token.getType());
+        Function f = UnaryOperationFactory.getOperation(v.getType(), token.getType());
         return (Token) f.apply(v);
     }
 

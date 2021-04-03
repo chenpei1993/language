@@ -15,7 +15,7 @@ import com.jenschen.token.Type;
  */
 public class LocalVariableParser implements Parser{
 
-    private static ExpressionParser expressionParser = new ExpressionParser();
+    private static  Parser compareExpressionParser = new CompareExpressionParser();
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
@@ -32,7 +32,7 @@ public class LocalVariableParser implements Parser{
         }
         iterator.next();
 
-        ASTNode right = expressionParser.parse(iterator);
+        ASTNode right = compareExpressionParser.parse(iterator);
 
         return new VariableAssignNode(variableName, right);
     }

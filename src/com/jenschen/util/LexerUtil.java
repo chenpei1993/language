@@ -1,6 +1,10 @@
 package com.jenschen.util;
 
+import com.jenschen.token.Token;
+import com.jenschen.token.Type;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,37 +18,62 @@ public class LexerUtil {
 
     private static final String LETTERS = "qwertyuiopasdfghjklzxcvbnm_QWERTYUIOPASDFGHJKLZXCVBNM";
 
+    private static final String LOGIC_SYMBOL = ">=<!";
+
     private static final String DIGITS_AND_LETTERS = DIGITS + LETTERS;
 
     private static final String DOT = ".";
 
-    private static final List<String> KEYWORD = new ArrayList<>();
+    private static final List<Type> KEYWORD = new ArrayList<>();
 
     static {
-        KEYWORD.add("const");
-        KEYWORD.add("let");
-        KEYWORD.add("while");
-        KEYWORD.add("if");
+        KEYWORD.add(Type.KEYWORD_LET);
+        KEYWORD.add(Type.KEYWORD_AND);
+        KEYWORD.add(Type.KEYWORD_OR);
+        KEYWORD.add(Type.KEYWORD_NOT);
+
+    }
+
+    public static boolean isLogicSymbol(Character c){
+        return LOGIC_SYMBOL.indexOf(c) >= 0 ? true : false;
     }
 
     public static boolean isLetter(Character c){
-        return LETTERS.indexOf(c) > 0 ? true : false;
+        return LETTERS.indexOf(c) >= 0 ? true : false;
     }
 
     public static boolean isValidCharacter(Character c){
-        return DIGITS_AND_LETTERS.indexOf(c) > 0 ? true : false;
+        return DIGITS_AND_LETTERS.indexOf(c) >= 0 ? true : false;
     }
 
     public static boolean isKeyword(String s){
-        return KEYWORD.contains(s);
+
+        Iterator<Type> iterator = KEYWORD.iterator();
+        while(iterator.hasNext()){
+            if(iterator.next().is(s)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Type getKeyword(String s){
+        Iterator<Type> iterator = KEYWORD.iterator();
+        while(iterator.hasNext()){
+            Type t = iterator.next();
+            if(t.is(s)){
+                return t;
+            }
+        }
+        return null;
     }
 
     public static boolean isNumber(Character c){
-        return DIGITS.indexOf(c) > 0 ? true : false;
+        return DIGITS.indexOf(c) >= 0 ? true : false;
     }
 
     public static boolean isDouble(Character c){
-        return (DIGITS + DOT).indexOf(c) > 0 ? true : false;
+        return (DIGITS + DOT).indexOf(c) >= 0 ? true : false;
     }
 
 }

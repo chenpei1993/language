@@ -7,12 +7,16 @@ package com.jenschen.token;
  */
 public enum Type {
     NULL,
+    BOOLEAN,
     INT,
     FLOAT,
     IDENTIFIER,
-    VARIABLE,
+    KEYWORD,
     KEYWORD_LET("let"),
     KEYWORD_CONST("const"),
+    KEYWORD_AND("and"),
+    KEYWORD_OR("or"),
+    KEYWORD_NOT("not"),
     SPACE(" "),
     TAB("\t"),
     PLUS("+"),
@@ -27,6 +31,9 @@ public enum Type {
     LOGIC_LT("<"),
     LOGIC_GE(">="),
     LOGIC_LE("<="),
+    LOGIC_AND("&&"),
+    LOGIC_OR("||"),
+    LOGIC_NOT("!"),
     LPAREN("("),
     RPAREN(")");
 

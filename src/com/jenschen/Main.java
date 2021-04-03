@@ -1,8 +1,8 @@
 package com.jenschen;
 
 import com.jenschen.lexer.Lexer;
-import com.jenschen.parser.Parser;
 import com.jenschen.parser.ExpressionParser;
+import com.jenschen.parser.Parser;
 import com.jenschen.parser.node.ASTNode;
 import com.jenschen.reader.ConsoleReader;
 import com.jenschen.token.Token;

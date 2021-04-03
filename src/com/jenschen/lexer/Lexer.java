@@ -65,8 +65,8 @@ public class Lexer {
             }else if(Type.DIV.is(curToken)){
                 tokens.add(new Token(Type.DIV));
                 next();
-            }else if(Type.EQ.is(curToken)){
-                tokens.add(new Token(Type.EQ));
+            }else if(LexerUtil.isLogicSymbol(curToken)){
+                tokens.add(getLogic());
                 next();
             }else if(Type.LPAREN.is(curToken)){
                 tokens.add(new Token(Type.LPAREN));
@@ -82,6 +82,31 @@ public class Lexer {
         return tokens;
     }
 
+    private Token getLogic() throws LexerException {
+        StringBuilder sb = new StringBuilder();
+        while(curToken != null && (LexerUtil.isLogicSymbol(curToken))){
+            sb.append(curToken);
+            next();
+        }
+        String symbol = sb.toString();
+
+        if(Type.EQ.is(symbol)){
+            return new Token(Type.EQ);
+        }else if(Type.LOGIC_LE.is(symbol)){
+            return new Token(Type.LOGIC_LE);
+        }else if(Type.LOGIC_LT.is(symbol)){
+            return new Token(Type.LOGIC_LT);
+        }else if(Type.LOGIC_GE.is(symbol)){
+            return new Token(Type.LOGIC_GE);
+        }else if(Type.LOGIC_GT.is(symbol)){
+            return new Token(Type.LOGIC_GT);
+        }else if(Type.LOGIC_EQ.is(curToken)){
+            return new Token(Type.LOGIC_EQ);
+        }else{
+            throw new LexerException("illegal logic symbol");
+        }
+    }
+
     private Token getIdentifier(){
         StringBuilder sb = new StringBuilder();
         while(curToken != null && (LexerUtil.isValidCharacter(curToken))){
@@ -90,7 +115,8 @@ public class Lexer {
         }
         String word = sb.toString();
         if(LexerUtil.isKeyword(word)){
-            return new Token(Type.VARIABLE, word);
+            Type t = LexerUtil.getKeyword(word);
+            return new Token(t, word);
         }else{
             return new Token(Type.IDENTIFIER, word);
         }

@@ -1,15 +1,13 @@
 package com.jenschen.parser;
 
-import com.jenschen.exception.IllegalExpressionException;
 import com.jenschen.exception.ParserException;
 import com.jenschen.parser.node.ASTNode;
 import com.jenschen.parser.node.BinaryOperationNode;
+import com.jenschen.parser.node.UnaryOperationNode;
 import com.jenschen.parser.node.VariableAccessNode;
-import com.jenschen.parser.node.VariableAssignNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
-import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,25 +15,26 @@ import java.util.List;
 /**
  * @Author: JensChen
  * @Description:
- * @Date: Created in 08:12 2021/4/2
+ * @Date: Created in 12:47 2021/4/3
  */
 public class ExpressionParser implements Parser {
 
+    private static Parser localVariableParser = new LocalVariableParser();
+
+    private static Parser compareExpressionParser = new CompareExpressionParser();
+
     private static List<Type> canParserType = new ArrayList<>();
-
-    static{
-        canParserType.add(Type.PLUS);
-        canParserType.add(Type.MINUS);
+    static {
+        canParserType.add(Type.LOGIC_AND);
+        canParserType.add(Type.LOGIC_OR);
+        canParserType.add(Type.KEYWORD_AND);
+        canParserType.add(Type.KEYWORD_OR);
     }
-
-    private static TermParser termParser = new TermParser();
-    private static LocalVariableParser localVariableParser = new LocalVariableParser();
-
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
 
-        if(Type.VARIABLE.equals(iterator.getNext().getType())){
+        if(Type.KEYWORD_LET.equals(iterator.getNext().getType())){
             Token token = iterator.next();
 
             ASTNode node = null;
@@ -48,19 +47,19 @@ public class ExpressionParser implements Parser {
             return new VariableAccessNode(token, node);
         }
 
+        if(Type.LOGIC_NOT.equals(iterator.getNext().getType())){
+            Token token = iterator.next();
+            ASTNode value = compareExpressionParser.parse(iterator);
+            return new UnaryOperationNode(value, token);
+        }
 
-        ASTNode left;
-
-        left = termParser.parse(iterator);
-
-
+        ASTNode left = compareExpressionParser.parse(iterator);
         while(canParserType.contains(iterator.getNext().getType())){
             Token token = iterator.next();
-            ASTNode right = termParser.parse(iterator);
+            ASTNode right = compareExpressionParser.parse(iterator);
             left = new BinaryOperationNode(left, right, token);
         }
 
         return left;
     }
-
 }
