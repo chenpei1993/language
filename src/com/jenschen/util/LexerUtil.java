@@ -24,6 +24,8 @@ public class LexerUtil {
 
     private static final String DOT = ".";
 
+    private static final String BACKSLASH = "#";
+
     private static final List<Type> KEYWORD = new ArrayList<>();
 
     static {
@@ -38,6 +40,10 @@ public class LexerUtil {
         KEYWORD.add(Type.KEYWORD_FALSE);
         KEYWORD.add(Type.KEYWORD_WHILE);
         KEYWORD.add(Type.KEYWORD_END);
+    }
+
+    public static boolean isSharp(Character c){
+        return BACKSLASH.indexOf(c) >= 0 ? true : false;
     }
 
     public static boolean isLogicSymbol(Character c){

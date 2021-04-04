@@ -28,6 +28,7 @@ public enum Type {
     KEYWORD_COMMA(","),
     SPACE(" "),
     TAB("\t"),
+    COMMENT("//"),
     ENTER("\n"),
     PLUS("+"),
     MINUS("-"),

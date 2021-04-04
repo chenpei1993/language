@@ -21,9 +21,10 @@ public class FilePathReader implements Reader{
 
         StringBuilder sb = new StringBuilder();
         String str;
+        //todo refactor for this can't get \n and EOF
         try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
             while((str = reader.readLine()) != null){
-                sb.append(str);
+                sb.append("\n" + str);
             }
             return sb.toString();
         }

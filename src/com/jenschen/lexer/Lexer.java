@@ -43,6 +43,8 @@ public class Lexer {
                 tokens.add(getDigits());
             }else if(Type.SPACE.is(curToken)){
                 next();
+            }else if(LexerUtil.isSharp(curToken)){
+                skipComment();
             }else if(Type.TAB.is(curToken)){
                 next();
             }else if(Type.ENTER.is(curToken)){
@@ -146,5 +148,10 @@ public class Lexer {
         }
     }
 
-
+    private void skipComment(){
+        next();
+        while(curToken != null && !Type.ENTER.is(curToken)){
+            next();
+        }
+    }
 }
