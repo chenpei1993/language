@@ -1,5 +1,7 @@
 package com.jenschen.node;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.EmptyToken;
 import com.jenschen.token.Token;
@@ -28,6 +30,19 @@ public class WhileOperationNode implements ASTNode, Operation{
         while(compareResult){
             result = exprNode.operation();
             booleanToken = compareNode.operation();
+            compareResult = BooleanOperationUtil.transferToBoolean(booleanToken);
+        }
+        return result;
+    }
+
+    @Override
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
+        Token booleanToken = compareNode.operation(context);
+        boolean compareResult = BooleanOperationUtil.transferToBoolean(booleanToken);
+        Token result = new EmptyToken();
+        while(compareResult){
+            result = exprNode.operation(context);
+            booleanToken = compareNode.operation(context);
             compareResult = BooleanOperationUtil.transferToBoolean(booleanToken);
         }
         return result;

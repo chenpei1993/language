@@ -24,6 +24,8 @@ public enum Type {
     KEYWORD_FALSE("false"),
     KEYWORD_WHILE("while"),
     KEYWORD_END("end"),
+    KEYWORD_FUNC("func"),
+    KEYWORD_COMMA(","),
     SPACE(" "),
     TAB("\t"),
     ENTER("\n"),

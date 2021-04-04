@@ -1,5 +1,8 @@
 package com.jenschen;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.Interpretor.Interpretor;
+import com.jenschen.Interpretor.SymbolTable;
 import com.jenschen.lexer.Lexer;
 import com.jenschen.parser.ExpressionParser;
 import com.jenschen.parser.Parser;
@@ -19,31 +22,27 @@ public class Main {
     public static void main(String[] args) {
 //        Reader reader = new ConsoleReader();
         Reader reader = new FilePathReader();
-        try{
-            while(true){
-                String context = reader.getText();
+        try {
+            while (true) {
+                String text = reader.getText();
 //                System.out.println(context);
-                if(context == null || context.isEmpty()){
+                if (text == null || text.isEmpty()) {
                     return;
                 }
-                Lexer lexer = new Lexer(context);
+                Lexer lexer = new Lexer(text);
                 List<Token> tokens = lexer.lexerText();
-                System.out.println(tokens);
+//                System.out.println(tokens);
                 TokenIterator iterator = new TokenIterator(tokens);
                 Parser parser = new ExpressionParser();
                 List<ASTNode> nodes = new ArrayList<>();
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     ASTNode node = parser.parse(iterator);
-                    System.out.println(node.toString());
+//                    System.out.println(node.toString());
                     nodes.add(node);
                 }
-                Iterator<ASTNode> nodeIterator = nodes.iterator();
-                while(nodeIterator.hasNext()){
-                    ASTNode node = nodeIterator.next();
-                    Token answer = node.operation();
-                    System.out.println("result " + answer.getValue());
-                }
-
+                Context context = new Context(new SymbolTable(), null);
+                Interpretor interpretor = new Interpretor(context, nodes);
+                interpretor.run();
             }
         }catch (Exception e){
             e.printStackTrace();

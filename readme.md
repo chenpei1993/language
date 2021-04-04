@@ -14,11 +14,14 @@ expr -> notLogicSymbol compareExpr
 expr -> if compareExpr then expr else expr
 expr -> while compareExpr then expr end
 expr -> identifier = compareExpr
+expr -> callExpr
+
+callExpr -> identifier ((identifier (, identifier)*)?)
 
 compareExpr -> arithmeticExpr | arithmeticExpr compareSymbol arithmeticExpr
 compareExpr -> (compareExpr)
 compareExpr -> true | false
-
+compareExpr -> methodSymbo
 
 arithmeticExpr -> term 
 arithmeticExpr -> plusMinus term
@@ -38,6 +41,7 @@ compareSymbol -> > | < | >= |  <= | ==
 logicSymbol -> and | or
 notLogicSymbol -> not
 variableSymbol -> let | const
+methodSymbo -> func identifier ((identifier (, identifier)*)?) then expr end
 ```
 
 ## 语法规则

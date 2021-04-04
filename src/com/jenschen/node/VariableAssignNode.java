@@ -1,7 +1,9 @@
 package com.jenschen.node;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
-import com.jenschen.parser.VariableTable;
+import com.jenschen.Interpretor.SymbolTable;
 import com.jenschen.token.Token;
 
 /**
@@ -23,7 +25,15 @@ public class VariableAssignNode implements ASTNode{
     public Token operation() throws OperationException {
         Token right = this.right.operation();
         String key = (String) variable.getValue();
-        VariableTable.setGlobalVariableMap(key, right);
+        SymbolTable.setGlobalVariableMap(key, right);
+        return variable;
+    }
+
+    @Override
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
+        Token right = this.right.operation(context);
+        String key = (String) variable.getValue();
+        context.setVariable(key, right);
         return variable;
     }
 

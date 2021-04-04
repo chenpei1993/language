@@ -1,6 +1,8 @@
 package com.jenschen.node;
 
+import com.jenschen.Interpretor.Context;
 import com.jenschen.exception.NoElseException;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.EmptyToken;
 import com.jenschen.token.Token;
@@ -41,6 +43,25 @@ public class IfOperationNode implements ASTNode, Operation {
         }else{
             if(elseNode != null){
                 return elseNode.operation();
+            }
+        }
+        return new EmptyToken();
+    }
+
+    @Override
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
+        Token t = compareNode.operation(context);
+
+        if(!(t.getValue() instanceof Boolean)){
+            throw new NoElseException();
+        }
+
+        boolean r = (boolean) t.getValue();
+        if(r){
+            return thenNode.operation(context);
+        }else{
+            if(elseNode != null){
+                return elseNode.operation(context);
             }
         }
         return new EmptyToken();

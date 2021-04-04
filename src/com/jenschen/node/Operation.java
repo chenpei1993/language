@@ -1,5 +1,7 @@
 package com.jenschen.node;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.Token;
 
@@ -11,4 +13,6 @@ import com.jenschen.token.Token;
 public interface Operation {
 
     Token operation() throws OperationException;
+
+    Token operation(Context context) throws OperationException, NotFoundVariableException;
 }

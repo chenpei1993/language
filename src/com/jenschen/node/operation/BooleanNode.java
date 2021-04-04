@@ -1,5 +1,7 @@
 package com.jenschen.node.operation;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.node.ASTNode;
 import com.jenschen.node.Operation;
@@ -20,6 +22,14 @@ public class BooleanNode implements ASTNode, Operation {
     }
     @Override
     public Token operation() throws OperationException {
+        if(token == null){
+            return new Token(Type.BOOLEAN, false);
+        }
+        return token;
+    }
+
+    @Override
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
         if(token == null){
             return new Token(Type.BOOLEAN, false);
         }

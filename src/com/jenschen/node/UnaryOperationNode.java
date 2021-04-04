@@ -1,5 +1,7 @@
 package com.jenschen.node;
 
+import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.Token;
 import com.jenschen.node.operation.UnaryOperationFactory;
@@ -24,6 +26,13 @@ public class UnaryOperationNode implements ASTNode{
     @Override
     public Token operation() throws OperationException {
         Token v = value.operation();
+        Function f = UnaryOperationFactory.getOperation(v.getType(), token.getType());
+        return (Token) f.apply(v);
+    }
+
+    @Override
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
+        Token v = value.operation(context);
         Function f = UnaryOperationFactory.getOperation(v.getType(), token.getType());
         return (Token) f.apply(v);
     }
