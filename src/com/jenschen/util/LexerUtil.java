@@ -30,6 +30,7 @@ public class LexerUtil {
 
     static {
         KEYWORD.add(Type.KEYWORD_LET);
+        KEYWORD.add(Type.KEYWORD_CONST);
         KEYWORD.add(Type.KEYWORD_AND);
         KEYWORD.add(Type.KEYWORD_OR);
         KEYWORD.add(Type.KEYWORD_NOT);
@@ -40,6 +41,7 @@ public class LexerUtil {
         KEYWORD.add(Type.KEYWORD_FALSE);
         KEYWORD.add(Type.KEYWORD_WHILE);
         KEYWORD.add(Type.KEYWORD_END);
+        KEYWORD.add(Type.KEYWORD_FUNC);
     }
 
     public static boolean isSharp(Character c){

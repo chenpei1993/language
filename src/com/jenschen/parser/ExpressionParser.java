@@ -1,5 +1,6 @@
 package com.jenschen.parser;
 
+import com.jenschen.Interpretor.FuncTable;
 import com.jenschen.exception.ParserException;
 import com.jenschen.node.*;
 import com.jenschen.token.Token;
@@ -24,6 +25,10 @@ public class ExpressionParser implements Parser {
 
     private static Parser whileExpressionParser = new WhileExpressionParser();
 
+    private static Parser funcExpressionParser = new FuncExpressionParser();
+
+    private static Parser callFuncExpressionParser = new CallFuncExpressionParser();
+
 
     private static List<Type> canParserType = new ArrayList<>();
     static {
@@ -40,31 +45,34 @@ public class ExpressionParser implements Parser {
         }
 
         if(Type.KEYWORD_LET.equals(iterator.getNext().getType())){
-            Token token = iterator.next();
+            return localVariableParser.parse(iterator);
+        }
 
-            ASTNode node = null;
-            if(Type.KEYWORD_LET.is((String) token.getValue())){
-                node = localVariableParser.parse(iterator);
-            }else if(Type.KEYWORD_CONST.is((String) token.getValue())){
-                node = localVariableParser.parse(iterator);
-            }
-
-            return new VariableAccessNode(token, node);
+        if(Type.KEYWORD_CONST.equals(iterator.getNext().getType())){
+            return localVariableParser.parse(iterator);
         }
 
         if(Type.KEYWORD_WHILE.equals(iterator.getNext().getType())){
             return whileExpressionParser.parse(iterator);
         }
 
+        if(Type.KEYWORD_FUNC.equals(iterator.getNext().getType())){
+            return funcExpressionParser.parse(iterator);
+
+        }
         if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
-            Token variable = iterator.next();
+            Token identifier = iterator.next();
+
+            if(Type.LPAREN.equals(iterator.getNext().getType())){
+                return callFuncExpressionParser.parse(identifier, iterator);
+            }
 
             if(!Type.EQ.equals(iterator.getNext().getType())){
-                return new VariableAccessNode(variable);
+                return new VariableAccessNode(identifier);
             }
             iterator.next(); // skip =
             ASTNode node = compareExpressionParser.parse(iterator);
-            return new VariableAssignNode(variable, node);
+            return new VariableAssignNode(identifier, node);
         }
 
         if(Type.LOGIC_NOT.equals(iterator.getNext().getType())){

@@ -2,6 +2,8 @@ package com.jenschen.parser;
 
 import com.jenschen.exception.ParserException;
 import com.jenschen.node.ASTNode;
+import com.jenschen.node.EmptyNode;
+import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 
 /**
@@ -12,4 +14,8 @@ import com.jenschen.token.TokenIterator;
 public interface Parser {
 
     ASTNode parse(TokenIterator iterator) throws ParserException;
+
+    default ASTNode parse(Token t, TokenIterator iterator) throws ParserException{
+        return new EmptyNode();
+    }
 }

@@ -1,6 +1,7 @@
 package com.jenschen.node;
 
 import com.jenschen.Interpretor.Context;
+import com.jenschen.Interpretor.SymbolTable;
 import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.token.EmptyToken;

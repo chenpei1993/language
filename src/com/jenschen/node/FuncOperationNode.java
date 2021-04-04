@@ -1,10 +1,13 @@
 package com.jenschen.node;
 
 import com.jenschen.Interpretor.Context;
+import com.jenschen.exception.NotFoundVariableException;
 import com.jenschen.exception.OperationException;
 import com.jenschen.node.ASTNode;
+import com.jenschen.token.EmptyToken;
 import com.jenschen.token.Token;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -32,7 +35,25 @@ public class FuncOperationNode implements ASTNode {
     }
 
     @Override
-    public Token operation(Context context) throws OperationException {
-        return null;
+    public Token operation(Context context) throws OperationException, NotFoundVariableException {
+        Iterator<ASTNode> iterator = bodyNode.iterator();
+        Token res = new EmptyToken();
+        while(iterator.hasNext()){
+            res = iterator.next().operation(context);
+        }
+        return res;
+    }
+
+    public ArgsOperationNode getArgsNode(){
+        return (ArgsOperationNode) this.argsNode;
+    }
+
+    @Override
+    public String toString() {
+        return "FuncOperationNode{" +
+                "funcName=" + funcName +
+                ", argsNode=" + argsNode +
+                ", bodyNode=" + bodyNode +
+                '}';
     }
 }

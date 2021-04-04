@@ -6,4 +6,4 @@ while a < 2 then
     a = a + 1
     b = b + 4
 end
- b # b = 6
+b # b = 6

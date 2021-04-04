@@ -22,17 +22,18 @@ public class IdentifierExpressionParser implements Parser {
 
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
-        Token variable = iterator.next();
-
-        if(Type.EQ.equals(iterator.getNext().getType())){
-            iterator.next(); // skip =
-            ASTNode node = compareExpressionParser.parse(iterator);
-            return new VariableAssignNode(variable, node);
-        }else if(Type.LPAREN.equals(iterator.getNext().getType())){
-            ASTNode body = callFuncExpressionParser.parse(iterator);
-            return new CallFuncOperationNode();
-        }else{
-            return new VariableAccessNode(variable);
-        }
+//        Token variable = iterator.next();
+//
+//        if(Type.EQ.equals(iterator.getNext().getType())){
+//            iterator.next(); // skip =
+//            ASTNode node = compareExpressionParser.parse(iterator);
+//            return new VariableAssignNode(variable, node);
+//        }else if(Type.LPAREN.equals(iterator.getNext().getType())){
+//            ASTNode body = callFuncExpressionParser.parse(iterator);
+//            return new CallFuncOperationNode();
+//        }else{
+//            return new VariableAccessNode(variable);
+//        }
+        return null;
     }
 }

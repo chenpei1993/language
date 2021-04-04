@@ -37,7 +37,6 @@ public class Context implements ISymbolTable {
         }
 
         return null;
-//        throw new NotFoundVariableException(key);
     }
 
     @Override
@@ -50,5 +49,13 @@ public class Context implements ISymbolTable {
             table.setVariable(key, value);
             parent.setVariable(key, value);
         }
+    }
+
+    public void setGlobalVariable(String key, Token value) {
+        SymbolTable.setGlobalVariableMap(key, value);
+    }
+
+    public static Context createNewContext(Context context){
+        return new Context(new SymbolTable(),context);
     }
 }

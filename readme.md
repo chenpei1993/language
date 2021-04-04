@@ -46,17 +46,23 @@ methodSymbo -> func identifier ((identifier (, identifier)*)?) then expr end
 
 ## 语法规则
 
+### 注释
+使用#符号表示注释，以\n结尾
+```
+# while function
+```
+
 ### 赋值预算
 ```
-let a = 1  -> a == 1
-let a = let b = 1 -> a == b == 1ß
+let a = 1  # a == 1
+let a = let b = 1 # a == b == 1
 ```
 
 ### 逻辑运算
 ```
-1 and 0 -> true
-1 and -1 -> false
-1 or -1 -> true
+1 and 0 # true
+1 and -1 # false
+1 or -1 # true
 ```
 
 ### 函数

@@ -20,6 +20,7 @@ public class LocalVariableParser implements Parser{
     @Override
     public ASTNode parse(TokenIterator iterator) throws ParserException {
 
+        Token token = iterator.next();
 
         if(!Type.IDENTIFIER.equals(iterator.getNext().getType())){
             throw new IllegalExpressionException("Local Variable");
@@ -34,6 +35,6 @@ public class LocalVariableParser implements Parser{
 
         ASTNode right = compareExpressionParser.parse(iterator);
 
-        return new VariableAssignNode(variableName, right);
+        return new VariableAssignNode(variableName, right, token.getType());
     }
 }
