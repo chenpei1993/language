@@ -32,6 +32,9 @@ public class TokenIterator {
     }
 
     public boolean hasNext(){
+        if(index >= tokens.size()){
+            return false;
+        }
         return tokens.get(index) != null;
     }
 }

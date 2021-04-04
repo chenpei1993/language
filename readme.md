@@ -13,6 +13,7 @@ expr -> compareExpr logicSymbol compareExpr
 expr -> notLogicSymbol compareExpr
 expr -> if compareExpr then expr else expr
 expr -> while compareExpr then expr end
+expr -> identifier = compareExpr
 
 compareExpr -> arithmeticExpr | arithmeticExpr compareSymbol arithmeticExpr
 compareExpr -> (compareExpr)

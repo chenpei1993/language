@@ -1,9 +1,7 @@
 package com.jenschen.parser;
 
 import com.jenschen.exception.ParserException;
-import com.jenschen.node.ASTNode;
-import com.jenschen.node.BinaryOperationNode;
-import com.jenschen.node.UnaryOperationNode;
+import com.jenschen.node.*;
 import com.jenschen.node.operation.BooleanNode;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
@@ -11,6 +9,7 @@ import com.jenschen.token.Type;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * @Author: JensChen
@@ -20,6 +19,8 @@ import java.util.List;
 public class CompareExpressionParser implements Parser {
 
     private static Parser arithmeticExpressionParser = new ArithmeticExpressionParser();
+
+    private static Parser compareExpressionParser = new CompareExpressionParser();
 
     private static List<Type> canParserType = new ArrayList<>();
     static {

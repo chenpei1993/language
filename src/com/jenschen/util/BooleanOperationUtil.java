@@ -40,7 +40,7 @@ public class BooleanOperationUtil {
         return null;
     }
 
-    private static boolean transferToBoolean(Token t) {
+    public static boolean transferToBoolean(Token t) {
         boolean n2;
         if (t.getValue() instanceof Integer || t.getValue() instanceof Double) {
             n2 = ((Number) t.getValue()).intValue() > 0 ? true : false;

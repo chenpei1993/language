@@ -37,6 +37,7 @@ public class TermParser implements Parser{
         }else{
             left = numberParser.parse(iterator);
         }
+
         while(canParserType.contains(iterator.getNext().getType())){
             Token token = iterator.next();
             ASTNode right;

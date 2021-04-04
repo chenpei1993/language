@@ -1,10 +1,7 @@
 package com.jenschen.parser;
 
 import com.jenschen.exception.ParserException;
-import com.jenschen.node.ASTNode;
-import com.jenschen.node.BinaryOperationNode;
-import com.jenschen.node.UnaryOperationNode;
-import com.jenschen.node.VariableAccessNode;
+import com.jenschen.node.*;
 import com.jenschen.token.Token;
 import com.jenschen.token.TokenIterator;
 import com.jenschen.token.Type;
@@ -24,6 +21,9 @@ public class ExpressionParser implements Parser {
     private static Parser compareExpressionParser = new CompareExpressionParser();
 
     private static Parser ifExpressionParser = new IfExpressionParser();
+
+    private static Parser whileExpressionParser = new WhileExpressionParser();
+
 
     private static List<Type> canParserType = new ArrayList<>();
     static {
@@ -50,6 +50,21 @@ public class ExpressionParser implements Parser {
             }
 
             return new VariableAccessNode(token, node);
+        }
+
+        if(Type.KEYWORD_WHILE.equals(iterator.getNext().getType())){
+            return whileExpressionParser.parse(iterator);
+        }
+
+        if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
+            Token variable = iterator.next();
+
+            if(!Type.EQ.equals(iterator.getNext().getType())){
+                return new VariableAccessNode(variable);
+            }
+            iterator.next(); // skip =
+            ASTNode node = compareExpressionParser.parse(iterator);
+            return new VariableAssignNode(variable, node);
         }
 
         if(Type.LOGIC_NOT.equals(iterator.getNext().getType())){

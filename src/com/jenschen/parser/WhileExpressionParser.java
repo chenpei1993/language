@@ -28,6 +28,6 @@ public class WhileExpressionParser implements Parser {
             throw new IllegalExpressionException("WhileExpression");
         }
         iterator.next(); // skip end
-        return new WhileOperationNode();
+        return new WhileOperationNode(compareNode, expr);
     }
 }
