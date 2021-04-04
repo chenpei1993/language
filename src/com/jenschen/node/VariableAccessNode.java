@@ -34,4 +34,12 @@ public class VariableAccessNode implements ASTNode {
         t = node.operation();
         return VariableTable.getGlobalVariableMap((String) t.getValue());
     }
+
+    @Override
+    public String toString() {
+        return "VariableAccessNode{" +
+                "token=" + token +
+                ", node=" + node +
+                '}';
+    }
 }

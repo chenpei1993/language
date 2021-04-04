@@ -32,4 +32,12 @@ public class WhileOperationNode implements ASTNode, Operation{
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "WhileOperationNode{" +
+                "compareNode=" + compareNode +
+                ", exprNode=" + exprNode +
+                '}';
+    }
 }

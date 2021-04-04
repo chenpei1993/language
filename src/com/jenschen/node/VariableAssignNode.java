@@ -26,4 +26,12 @@ public class VariableAssignNode implements ASTNode{
         VariableTable.setGlobalVariableMap(key, right);
         return variable;
     }
+
+    @Override
+    public String toString() {
+        return "VariableAssignNode{" +
+                "variable=" + variable +
+                ", right=" + right +
+                '}';
+    }
 }

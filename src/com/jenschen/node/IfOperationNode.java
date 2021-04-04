@@ -45,4 +45,14 @@ public class IfOperationNode implements ASTNode, Operation {
         }
         return new EmptyToken();
     }
+
+    @Override
+    public String toString() {
+        return "IfOperationNode{" +
+                "token=" + token +
+                ", compareNode=" + compareNode +
+                ", thenNode=" + thenNode +
+                ", elseNode=" + elseNode +
+                '}';
+    }
 }
