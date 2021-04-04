@@ -44,6 +44,12 @@ public class LexerUtil {
         KEYWORD.add(Type.KEYWORD_FUNC);
     }
 
+    private static final List<Type> INNER_METHOD = new ArrayList<>();
+
+    static {
+        INNER_METHOD.add(Type.METHOD_PRINT);
+    }
+
     public static boolean isSharp(Character c){
         return BACKSLASH.indexOf(c) >= 0 ? true : false;
     }
@@ -90,4 +96,13 @@ public class LexerUtil {
         return (DIGITS + DOT).indexOf(c) >= 0 ? true : false;
     }
 
+    public static boolean isInnerMethod(String word) {
+        Iterator<Type> iterator = INNER_METHOD.iterator();
+        while(iterator.hasNext()){
+            if(iterator.next().is(word)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

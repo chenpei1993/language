@@ -123,6 +123,8 @@ public class Lexer {
         if(LexerUtil.isKeyword(word)){
             Type t = LexerUtil.getKeyword(word);
             return new Token(t, word);
+        }else if(LexerUtil.isInnerMethod(word)){
+            return new Token(Type.METHOD, word);
         }else{
             return new Token(Type.IDENTIFIER, word);
         }

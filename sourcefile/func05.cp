@@ -11,5 +11,5 @@ func test(a, c) then
 end
 
 test(a, c)
-a
-c
+print(a)
+print(c)

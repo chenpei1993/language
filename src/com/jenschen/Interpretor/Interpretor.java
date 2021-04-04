@@ -31,7 +31,7 @@ public class Interpretor implements Program{
             while(nodeIterator.hasNext()){
                 ASTNode node = nodeIterator.next();
                 Token answer = node.operation(currentContext);
-                System.out.println("result " + answer.getValue());
+//                System.out.println("result " + answer.getValue());
             }
         }catch (OperationException e) {
             e.printStackTrace();

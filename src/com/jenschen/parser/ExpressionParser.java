@@ -29,6 +29,8 @@ public class ExpressionParser implements Parser {
 
     private static Parser callFuncExpressionParser = new CallFuncExpressionParser();
 
+    private static Parser methodExpressionParser = new MethodExpressionParser();
+
 
     private static List<Type> canParserType = new ArrayList<>();
     static {
@@ -60,6 +62,11 @@ public class ExpressionParser implements Parser {
             return funcExpressionParser.parse(iterator);
 
         }
+
+        if(Type.METHOD.equals(iterator.getNext().getType())){
+            return methodExpressionParser.parse(iterator);
+        }
+
         if(Type.IDENTIFIER.equals(iterator.getNext().getType())){
             Token identifier = iterator.next();
 
